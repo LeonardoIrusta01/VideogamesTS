@@ -18,7 +18,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3001",
+        url: "http://localhost:3000",
       },
     ],
   },
@@ -54,7 +54,7 @@ app.get("/hola", (req, res) => {
 // Coneccion.
 mongoose
   .connect(
-    `mongodb+srv://${DB_USER}:${DB_PASSWORD}@videogames.g4yvf.mongodb.net/?retryWrites=true&w=majority`,
+    `mongodb+srv://leoirusta:Nb77DqCARSSQdmxR@vdts.kxjrz.mongodb.net/?retryWrites=true&w=majority`,
     {
       // useCreateIndex: true,
       // useFindAndModify: false,

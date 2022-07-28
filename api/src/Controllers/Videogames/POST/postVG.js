@@ -5,7 +5,6 @@ const PostVG = async (req, res) => {
     const {
       name,
       released,
-      date,
       image,
       rating,
       stores,
