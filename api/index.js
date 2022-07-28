@@ -4,8 +4,26 @@ import Express from "express";
 import Cors from "cors";
 import morgan from "morgan";
 import route from "./src/index.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Express API with Swagger",
+      description:
+        "A simple CRUD API application made with Express and documented with Swagger",
+    },
+    servers: [
+      {
+        url: "http://localhost:3001",
+      },
+    ],
+  },
+  apis: ["./src/Routes/*.js"],
+};
 const app = Express();
 
 // Controladores y dependencias.
@@ -23,6 +41,8 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+const specs = swaggerJsdoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Route
 app.use("/", route);

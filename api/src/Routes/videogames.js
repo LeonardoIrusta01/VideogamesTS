@@ -1,13 +1,52 @@
 import { Router } from "express";
-import getAll  from "../Controllers/Videogames/GET/getall.js"
+import getAll from "../Controllers/Videogames/GET/getall.js";
 import PostVG from "../Controllers/Videogames/POST/postVG.js";
 import PostVGAPI from "../Controllers/Videogames/POST/postVGAPI.js";
 const router = Router();
 
-router.get("/", getAll)
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *      Videogames:
+ *          type: object
+ *          properties:
+ *              name:
+ *                  type: string
+ *                  description: el nombre de un videogames
+ *              released:
+ *                  type: string
+ *                  description: fecha de lanzamiento
+ *          requered:
+ *              - name
+ *              - released
+ *          example:
+ *              name: GTA V
+ *              released: 26/23/12
+ */
 
-router.post("/", PostVG)
+router.get("/", getAll);
 
-router.post("/VGAPI", PostVGAPI)
+/**
+ * @swagger
+ * /videogames:
+ *  post:
+ *      summary: creación de un video juego
+ *      tags: [Videogames]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: "#/components/schemas/Videogames"
+ *      responses:
+ *          200:
+ *              description: nuevo video juego creado
+ */
 
-export default router
+router.post("/", PostVG);
+
+router.post("/VGAPI", PostVGAPI);
+
+export default router;
