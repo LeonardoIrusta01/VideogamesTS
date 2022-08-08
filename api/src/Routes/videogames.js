@@ -1,5 +1,6 @@
 import { Router } from "express";
 import getAll from "../Controllers/Videogames/GET/getall.js";
+import getVGById from "../Controllers/Videogames/GET/getVGById.js";
 import PostVG from "../Controllers/Videogames/POST/postVG.js";
 import PostVGAPI from "../Controllers/Videogames/POST/postVGAPI.js";
 const router = Router();
@@ -44,6 +45,8 @@ router.get("/", getAll);
  *          200:
  *              description: nuevo video juego creado
  */
+
+router.get("/:id", getVGById);
 
 router.post("/", PostVG);
 
